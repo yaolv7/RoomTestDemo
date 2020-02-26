@@ -33,11 +33,38 @@
         app:layout_constraintStart_toEndOf="@+id/loadUser"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/addFruit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="随机添加Fruit"
+        app:layout_constraintEnd_toStartOf="@+id/loadFruit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addUser"/>
+
+    <Button
+        android:id="@+id/loadFruit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="查找所有Fruit"
+        app:layout_constraintEnd_toEndOf="@+id/deleteFruit"
+        app:layout_constraintStart_toEndOf="@+id/addFruit"
+        app:layout_constraintTop_toTopOf="@+id/addFruit" />
+
+    <Button
+        android:id="@+id/deleteFruit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="删除所有Fruit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/loadFruit"
+        app:layout_constraintTop_toTopOf="@+id/addFruit" />
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addUser">
+        app:layout_constraintTop_toBottomOf="@+id/addFruit">
 
         <TextView
             android:id="@+id/loadView"

@@ -2,7 +2,6 @@ package com.example.room.test
 
 import android.app.Application
 import androidx.room.Room
-import com.example.room.test.daos.MIGRATION_1_2
 
 class BaseApp : Application() {
 
@@ -11,7 +10,7 @@ class BaseApp : Application() {
         super.onCreate()
         mAppDatabase = Room.databaseBuilder(this, AppDatabase::class.java, "testDatabase")
             .allowMainThreadQueries()
-            .addMigrations(MIGRATION_1_2)
+            .addMigrations(MIGRATION_1_2, MIGRATION_2_3)
             .build()
     }
 
