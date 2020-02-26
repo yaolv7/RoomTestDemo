@@ -26,10 +26,11 @@ data class User(
     var lastName: String? = null,
 //      @ColumnInfo(name = "first_name") val firstName: String?, // 不同的列名，默认是参数名称
 //      @ColumnInfo(name = "last_name") val lastName: String?
-    @Ignore var picture: Bitmap? = null// @Ignore 注解 忽略字段
+    @Ignore var picture: Bitmap? = null,// @Ignore 注解 忽略字段
+    var age: Int? = null
 ) {
     override fun toString(): String {
-        return "User(id=$id, firstName=$firstName, lastName=$lastName, picture=$picture)"
+        return "User(id=$id, firstName=$firstName, lastName=$lastName, picture=$picture, age=$age)\n"
     }
 }
 

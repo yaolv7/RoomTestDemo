@@ -11,6 +11,12 @@ interface UserDao {
     @Delete
     fun deleteUsers(vararg users: User)
 
+    @Query("DELETE from user")
+    fun deleteAllUsers()
+
+//    @Query("ALTER TABLE user AUTO_INCREMENT = 1") // todo 重置自增主键？？
+//    fun resetAutoIncrement()
+
     @Update
     fun updateUsers(vararg users: User)
 
