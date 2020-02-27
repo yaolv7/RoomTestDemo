@@ -1,9 +1,17 @@
-# ROOM框架部分文档
+# ROOM框架简单使用学习Demo
 
+学习记录
+1.创建数据库
+2.增删改查功能
+3.升级数据库
+4.学习挂起方法
+
+官方文档
 https://developer.android.google.cn/training/data-storage/room/relationships
 
 ---
-
+# 文档记录
+---
 ## 定义一对多关系
 
 
@@ -42,8 +50,8 @@ User 和 Book 之间构建一对多关系模型。
 注释表示要解构到表中其子字段的对象。然后，您可以像查询其他各个列一样查询嵌套字段。
 
 例如，您的 User 类可以包含类型 Address 的字段，该类型表示一组分别名为
-street、city、state 和 postCode 的字段。要在表中单独存储组成的列，请在 User 类（使用
-@Embedded 注释）中添加 Address 字段，如以下代码段所示：
+street、city、state 和 postCode 的字段。要在表中单独存储组成的列，请在 User
+类（使用 @Embedded 注释）中添加 Address 字段，如以下代码段所示：
 
 
     data class Address(
@@ -68,8 +76,11 @@ street、city、state 和 postCode 的字段。要在表中单独存储组成的
 ---
 
 ## 返回列的子集
+
 大多数情况下，您只需获取实体的几个字段。例如，您的界面可能仅显示用户的名字和姓氏，而不是用户的每一条详细信息。通过仅提取应用界面中显示的列，您可以节省宝贵的资源，并且您的查询也能更快完成。
-借助 Room，您可以从查询中返回任何基于 Java 的对象，前提是结果列集合会映射到返回的对象。例如，您可以创建以下基于 Java 的普通对象 (POJO) 来获取用户的名字和姓氏：
+借助 Room，您可以从查询中返回任何基于 Java
+的对象，前提是结果列集合会映射到返回的对象。例如，您可以创建以下基于 Java 的普通对象
+(POJO) 来获取用户的名字和姓氏：
 
 
     data class NameTuple(
