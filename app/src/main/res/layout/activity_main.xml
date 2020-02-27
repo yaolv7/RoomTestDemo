@@ -40,7 +40,7 @@
         android:text="随机添加Fruit"
         app:layout_constraintEnd_toStartOf="@+id/loadFruit"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addUser"/>
+        app:layout_constraintTop_toBottomOf="@+id/addUser" />
 
     <Button
         android:id="@+id/loadFruit"
@@ -74,5 +74,14 @@
             tools:text="66666" />
 
     </androidx.core.widget.NestedScrollView>
+
+    <Button
+        android:id="@+id/showToast"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ShowToast"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loadFruit" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

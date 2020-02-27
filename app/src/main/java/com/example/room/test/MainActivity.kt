@@ -1,17 +1,20 @@
 package com.example.room.test
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.room.Room
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.room.test.bean.Fruit
 import com.example.room.test.bean.User
 import com.example.room.test.daos.FruitDao
 import com.example.room.test.daos.UserDao
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
-
+    private val TAG = MainActivity::class.simpleName
     private lateinit var db: AppDatabase
     private lateinit var userDao: UserDao
     private lateinit var fruitDao: FruitDao
@@ -25,10 +28,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun init() {
-        // todo 数据库操作需要写成异步方法
         db = BaseApp.getDatabase()
-        userDao = db.getUserDao()
-        fruitDao = db.getFruitDao()
+        userDao = db.getUserDao() // 同步方法数据库（阻塞UI线程）
+        fruitDao = db.getFruitDao()// 异步数据库(不阻塞UI线程)
     }
 
     private fun setListener() {
@@ -54,20 +56,30 @@ class MainActivity : AppCompatActivity() {
 
         // -------- Fruit -------
         addFruit.setOnClickListener {
-            fruitDao.insert(
-                Fruit(
-                    name = String(Random.nextBytes(1))
+            GlobalScope.launch {
+                fruitDao.insert(
+                    Fruit(
+                        name = String(Random.nextBytes(1))
+                    )
                 )
-            )
+            }
         }
 
         loadFruit.setOnClickListener {
-            loadView.text = "${fruitDao.loadAllFruits()}"
+            GlobalScope.launch(Dispatchers.Main) {
+                loadView.text = "${fruitDao.loadAllFruits()}"
+            }
         }
 
         deleteFruit.setOnClickListener {
-            fruitDao.deleteAllFruits()
-            loadView.text = "${fruitDao.loadAllFruits()}"
+            GlobalScope.launch(Dispatchers.Main) {
+                fruitDao.deleteAllFruits()
+                loadView.text = "${fruitDao.loadAllFruits()}"
+            }
+        }
+
+        showToast.setOnClickListener {
+            Toast.makeText(this, "测试阻塞主线程", Toast.LENGTH_SHORT).show()
         }
     }
 
